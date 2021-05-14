@@ -1,6 +1,6 @@
-# ScenesShellBasic
+# AimTrainer 
 
-A basic shell to serve as a starting point for using Scenes.
-It includes a MainScene, three Layers, and one Background object
-but is otherwise empty.
+Aim Trainer Program utilizes IGIS libraries and the ScenesShellBasic
+repo to create a game that can be seen on 
+# codermerlin.com/igis/user-name/
 
