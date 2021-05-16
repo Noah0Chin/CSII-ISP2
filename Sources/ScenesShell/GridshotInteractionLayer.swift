@@ -3,9 +3,9 @@ import Igis
 import ScenesControls
 
 class GridshotInteractionLayer : Layer {
-    var didRender = false
-    var xPosition : Int
-    var yPosition : Int
+   // var didRender = false
+//    var xPosition : Int
+  //  var yPosition : Int
 
     init() {
         super.init(name:"Gridshot Interaction")
@@ -17,7 +17,7 @@ class GridshotInteractionLayer : Layer {
     }
 
     // Render the objects and potentially the canvas where the objects will spawn
-    override func render(canvas:Canvas) {
+/*    override func render(canvas:Canvas) {
         if let canvasSize = canvas.canvasSize, !didRender {
             
             // render one target
@@ -25,7 +25,7 @@ class GridshotInteractionLayer : Layer {
             didRender = true
         }
     }
-
+*/
     func getNewPosition() {
     }
 
