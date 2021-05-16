@@ -15,7 +15,7 @@ class GridshotScene : Scene {
      */
     
     let backgroundLayer = BackgroundLayer()
-    let gridshotInteractionLayer = GridShotInteractionLayer()
+    let gridshotInteractionLayer = GridshotInteractionLayer()
         
     init() {
         // Using a meaningful name can be helpful for debugging
