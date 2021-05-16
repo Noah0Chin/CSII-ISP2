@@ -1,7 +1,8 @@
 import Scenes
 import Igis
 import ScenesControls
-  /*
+
+/*
      This class is responsible for the interaction Layer.
      Internally, it maintains the RenderableEntities for this layer.
    */
