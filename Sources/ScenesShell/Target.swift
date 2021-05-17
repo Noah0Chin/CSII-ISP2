@@ -67,6 +67,9 @@ class Target: RenderableEntity, EntityMouseClickHandler {
         self.dimensionY = dimensionY
     }
 
+    public func isDestroyed() -> Bool {
+        return(destroyed)
+    }
     // calculate fuctions calculates the repositing and any other things that involve the target changing values
     
     override func calculate(canvasSize: Size) {
