@@ -2,7 +2,7 @@ import Scenes
 import Foundation
 import Igis
 
-class Target: RenderableEntity, EntityMouseClickHandler {
+class FlickshotTarget: RenderableEntity, EntityMouseClickHandler {
 
     // Creates a an ellipse which is the Target
     //    let ellipse = Ellipse(center:Point(x:0,y:0), radiusX:30, radiusY:30, fillMode:.fillAndStroke)
@@ -24,7 +24,7 @@ class Target: RenderableEntity, EntityMouseClickHandler {
     var velocityX : Int
     var velocityY : Int
 
-
+    
     // dimenstion vectors for the target, (ex used in reszing the ellipse at a certain rate
     var dimensionX : Int
     var dimensionY : Int
@@ -67,9 +67,6 @@ class Target: RenderableEntity, EntityMouseClickHandler {
         self.dimensionY = dimensionY
     }
 
-    public func isDestroyed() -> Bool {
-        return(destroyed)
-    }
     // calculate fuctions calculates the repositing and any other things that involve the target changing values
     
     override func calculate(canvasSize: Size) {
@@ -81,44 +78,19 @@ class Target: RenderableEntity, EntityMouseClickHandler {
         ellipse.radiusX += dimensionX
         ellipse.radiusY += dimensionY
 
-        // Form a bounding rectangle around the canvas
-        let canvasBoundingRect = Rect(size:canvasSize)
-
-        // Form a bounding rect around the target (ellipse)
-        let targetBoundingRect = Rect(topLeft:Point(x:ellipse.center.x-ellipse.radiusX, y:ellipse.center.y-ellipse.radiusY),
-                                    size:Size(width:ellipse.radiusX*2, height:ellipse.radiusY*2))
-
-        // Determine if we've moved outside of the canvas boundary rect
-        let tooFarLeft = targetBoundingRect.topLeft.x < canvasBoundingRect.topLeft.x
-        let tooFarRight = targetBoundingRect.topLeft.x + targetBoundingRect.size.width > canvasBoundingRect.topLeft.x + canvasBoundingRect.size.width
-
-
         
-        let tooFarUp = targetBoundingRect.topLeft.y < canvasBoundingRect.topLeft.y
-        let tooFarDown = targetBoundingRect.topLeft.y + targetBoundingRect.size.height > canvasBoundingRect.topLeft.y + canvasBoundingRect.size.height
-
-          
-          // If we're too far to the left or right, we bounce the x velocity
-          if tooFarLeft || tooFarRight {
-            velocityX = -velocityX
-          }
-          
-          // if we're too far up or down, we bounce the y velocity
-          if tooFarDown || tooFarUp {
-              velocityY = -velocityY
-          }
-
-          
     }
     
+    var canvasX = 0
+    var canvasY = 0
 
     override func setup(canvasSize:Size, canvas:Canvas) {
-
+        canvasX = canvasSize.center.x
+        canvasY = canvasSize.center.y        
         dispatcher.registerEntityMouseClickHandler(handler:self)
         canvas.setup(targetSound)
     }
 
-    
     override func teardown() {
         dispatcher.unregisterEntityMouseClickHandler(handler:self)      
     }
@@ -129,11 +101,25 @@ class Target: RenderableEntity, EntityMouseClickHandler {
         playTargetBreakSound = true
     }
 
+    var centerPosition = false
     
     override func render(canvas: Canvas) {
-        if destroyed == false {
-        canvas.render(strokeStyle, fillStyle, lineWidth, ellipse)
+        if destroyed == true {
+            let xPosition = Int.random(in: 200 ..< canvasX*2)
+            let yPosition = Int.random(in: 200 ..< canvasY*2)            
+            centerPosition = !centerPosition
+            
+            if centerPosition == false {                
+                ellipse.center = Point(x:xPosition, y:yPosition)                                
+            } else {
+                ellipse.center = Point(x:canvasX, y:canvasY)                
+            }
+            destroyed = !destroyed                        
+    
+        } else {         
+            canvas.render(strokeStyle, fillStyle, lineWidth, ellipse)            
         }
+    
         if targetSound.isReady && playTargetBreakSound == true{
             canvas.render(targetSound)
             playTargetBreakSound = !playTargetBreakSound
@@ -141,12 +127,9 @@ class Target: RenderableEntity, EntityMouseClickHandler {
         } 
         
     }
-
+        
     override func boundingRect() -> Rect {
         return Rect(topLeft:Point(x:ellipse.center.x - ellipse.radiusX, y: ellipse.center.y - ellipse.radiusY), size: Size(width: ellipse.radiusX * 2, height: ellipse.radiusY * 2))
     
-    }
-
-    
-    
+    }      
 }

@@ -18,7 +18,7 @@ class InteractionLayer : Layer {
     let target = Target(center:Point(x:250,y:300),radiusX: 10, radiusY:23)
     let firstTimer = Timer(enqueueScene:ScoreScene(), timeLimit: 10)
       init() {
-          // Using a meaningful name can be helpful for debugging
+          // Using a meaningful name can be helpful for debuggin
           super.init(name:"Interaction")
 
           // We insert our RenderableEntities in the constructor
