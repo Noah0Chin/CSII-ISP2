@@ -6,11 +6,17 @@ import ScenesControls
 class MenuInteractionLayer : Layer {
     var didRender = false
 
-    let gamesArray = [GridshotScene(), WipeshotScene(), TrackshotScene()]
+    let gamesArray = [GridshotScene(), FlickshotScene(), TrackshotScene()]
 
+    var canvasX = 0
+    var canvasY = 0
+
+    func setup(canvasSize:Size, canvas:Canvas) {
+        canvasX = canvasSize.center.x
+        canvasY = canvasSize.center.y        
+    }
     
-    
-    
+        
     init() {
         super.init(name:"Menu Interaction")
 
@@ -24,10 +30,10 @@ class MenuInteractionLayer : Layer {
         startGridshotButton.clickHandler = onStartGridshotButtonClickHandler
         insert(entity: startGridshotButton, at: .front)
 
-        let startWipeshotButton = Button(name:"startWipeshot", labelString: "Play Wipeshot",
+        let startFlickshotButton = Button(name:"startFlickshot", labelString: "Play Flickshot",
                                          topLeft: Point(x: 50, y: 150))
-        startWipeshotButton.clickHandler = onStartWipeshotButtonClickHandler
-        insert(entity: startWipeshotButton, at: .front)
+        startFlickshotButton.clickHandler = onStartFlickshotButtonClickHandler
+        insert(entity: startFlickshotButton, at: .front)
 
         let startTrackshotButton = Button(name:"startTrackshot", labelString: "Play Trackshot",
                                          topLeft: Point(x: 50, y: 200))
@@ -43,8 +49,8 @@ class MenuInteractionLayer : Layer {
     }
     
     createButton(name:"TestGame")
-    */ 
-
+     */
+    
    
     private func onStartRandomButtonClickHandler(control: Control, localLocation: Point) {
         director.enqueueScene(scene:gamesArray.randomElement()!)
@@ -56,8 +62,8 @@ class MenuInteractionLayer : Layer {
         director.transitionToNextScene()
     }
 
-    private func onStartWipeshotButtonClickHandler(control: Control, localLocation: Point) {
-        director.enqueueScene(scene:WipeshotScene())
+    private func onStartFlickshotButtonClickHandler(control: Control, localLocation: Point) {
+        director.enqueueScene(scene:FlickshotScene())
         director.transitionToNextScene()
     }
 
