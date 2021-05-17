@@ -6,7 +6,10 @@ import ScenesControls
 class MenuInteractionLayer : Layer {
     var didRender = false
 
-    let gamesArray = [GridshotScene(), WipeshotScene()]
+    let gamesArray = [GridshotScene(), WipeshotScene(), TrackshotScene()]
+
+    
+    
     
     init() {
         super.init(name:"Menu Interaction")
@@ -33,13 +36,17 @@ class MenuInteractionLayer : Layer {
 
     }
 
+
+    /*
     func createButton(name:String) -> String {
         let test = "private func onStart\(name)ButtonClickHandler(control: Control, localLocation: Point) {"
         return test
     }
     
-    //createButton(name:"TestGame")
+    createButton(name:"TestGame")
+    */ 
 
+   
     private func onStartRandomButtonClickHandler(control: Control, localLocation: Point) {
         director.enqueueScene(scene:gamesArray.randomElement()!)
         director.transitionToNextScene()
@@ -56,7 +63,7 @@ class MenuInteractionLayer : Layer {
     }
 
     private func onStartTrackshotButtonClickHandler(control: Control, localLocation: Point) {
-        director.enqueueScene(scene:gamesArray.randomElement()!)
+        director.enqueueScene(scene:TrackshotScene())
         director.transitionToNextScene()
     }
 
