@@ -24,7 +24,7 @@ class WipeshotTarget: RenderableEntity, EntityMouseClickHandler {
     var velocityX : Int
     var velocityY : Int
 
-
+    
     // dimenstion vectors for the target, (ex used in reszing the ellipse at a certain rate
     var dimensionX : Int
     var dimensionY : Int
@@ -101,16 +101,25 @@ class WipeshotTarget: RenderableEntity, EntityMouseClickHandler {
         playTargetBreakSound = true
     }
 
+    var centerPosition = false
     
     override func render(canvas: Canvas) {
-        
-        for _ in 0 ... 25 {
+        if destroyed == true {
             let xPosition = Int.random(in: 200 ..< canvasX*2)
-            let yPosition = Int.random(in: 200 ..< canvasY*2)
-
-            canvas.render(strokeStyle, fillStyle, lineWidth, ellipse)
-        }
+            let yPosition = Int.random(in: 200 ..< canvasY*2)            
+            centerPosition = !centerPosition
             
+            if centerPosition == false {                
+                ellipse.center = Point(x:xPosition, y:yPosition)                                
+            } else {
+                ellipse.center = Point(x:canvasX, y:canvasY)                
+            }
+            destroyed = !destroyed                        
+    
+        } else {         
+            canvas.render(strokeStyle, fillStyle, lineWidth, ellipse)            
+        }
+    
         if targetSound.isReady && playTargetBreakSound == true{
             canvas.render(targetSound)
             playTargetBreakSound = !playTargetBreakSound
@@ -118,7 +127,7 @@ class WipeshotTarget: RenderableEntity, EntityMouseClickHandler {
         } 
         
     }
-
+        
     override func boundingRect() -> Rect {
         return Rect(topLeft:Point(x:ellipse.center.x - ellipse.radiusX, y: ellipse.center.y - ellipse.radiusY), size: Size(width: ellipse.radiusX * 2, height: ellipse.radiusY * 2))
     
