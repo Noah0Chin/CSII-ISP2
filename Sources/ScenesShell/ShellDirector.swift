@@ -17,22 +17,35 @@ import Scenes
  The scene executes until transition method is invoked to 'transition' to the next scene. 
  */
 
+
+/*
+ Scenes: MenuScene, GridshotScene, etc. 
+ */
+
+
 class ShellDirector : Director {
+    
     required init() {
         super.init()
-        enqueueScene(scene:MainScene())        
-        //        enqueueScene(scene:GridshotScene())
         enqueueScene(scene:MenuScene())
-        transitionToNextScene()
     }
 
-    
-    func startGridshot() {
-        //enqueueScene(scene:GridshotScene())
-        transitionToNextScene()        
-        print("Transitioning to Gridshot Scene")
-    }        
+/*    func startGridshot() {
+        enqueueScene(scene:GridshotScene())
+        transitionToNextScene()
+        print("Transitioned to Gridshot Scene")
+    } */
 
+    
+/*    func startGridshot() {
+        enqueueScene(scene:GridshotScene())
+        transitionToNextScene()
+        print("Start Gridshot Button Clicked")        
+    } */
+    
+    
+//    func startGridshot() {
+  //  }
     
     
     // if MenuScene.swap() is true, then transition scene here. In menu, add button that makes swap function true when it is pressed
@@ -43,4 +56,5 @@ class ShellDirector : Director {
     }
 
 }
+
 

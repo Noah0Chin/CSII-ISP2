@@ -6,8 +6,6 @@ import ScenesControls
 class MenuInteractionLayer : Layer {
     var didRender = false
 
-
-
     init() {
         super.init(name:"Menu Interaction")
 
@@ -26,8 +24,9 @@ class MenuInteractionLayer : Layer {
     }
     */
 
-
-    private func onStartGridshotButtonClickHandler(control: Control, localLocation: Point) {
-        ShellDirector().startGridshot()
+    private func onStartGridshotButtonClickHandler(control: Control, localLocation: Point) {    
+        //ShellDirector().startGridshot()
+        director.enqueueScene(scene:GridshotScene())
+        director.transitionToNextScene()
     }
 }
