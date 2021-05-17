@@ -9,7 +9,7 @@ class GridshotInteractionLayer : Layer {
 
     public var timeSet : Int?
     
-    let timer = Timer(enqueueScene:ScoreScene(), timeLimit:20)
+    let timer = Timer(enqueueScene:ScoreScene(), timeLimit:45)
 
     //var didRender = false
     
