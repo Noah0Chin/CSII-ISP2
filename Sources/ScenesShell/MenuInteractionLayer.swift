@@ -4,9 +4,7 @@ import ScenesControls
 
 
 class MenuInteractionLayer : Layer {
-    var didRender = false
-
-    let gamesArray = [GridshotScene(), FlickshotScene(), TrackshotScene()]
+    let gamesArray = [GridshotScene(), FlickshotScene(), TrackshotScene(), MassShotScene()]
 
     var canvasX = 0
     var canvasY = 0
@@ -19,11 +17,17 @@ class MenuInteractionLayer : Layer {
         
     init() {
         super.init(name:"Menu Interaction")
+        
 
+        createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:300, y:100),
+                    layoutStyle:.uniformColumn)
+        
+        
         let startRandomButton = Button(name:"startRandom", labelString: "Random",
                                          topLeft: Point(x: 50, y: 25))
         startRandomButton.clickHandler = onStartRandomButtonClickHandler
         insert(entity: startRandomButton, at: .front)        
+
         
         let startGridshotButton = Button(name:"startGridshot", labelString: "Play Gridshot",
                                          topLeft: Point(x: 50, y: 100))
@@ -39,9 +43,27 @@ class MenuInteractionLayer : Layer {
                                          topLeft: Point(x: 50, y: 200))
         startTrackshotButton.clickHandler = onStartTrackshotButtonClickHandler
         insert(entity: startTrackshotButton, at: .front)
+
+        let startMassShotButton = Button(name:"startMassShot", labelString: "Play MassShot",
+                                         topLeft: Point(x: 50, y: 250))
+        startMassShotButton.clickHandler = onStartMassShotButtonClickHandler
+        insert(entity: startMassShotButton, at: .front)        
+    }
+
+    func createPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
+        // Create and insert the panel into the LAYER
+        let panel = Panel(name:name, topLeft:topLeft, layoutStyle:layoutStyle)
+        insert(entity:panel, at:.front)
+
+        let startGridshot10Button = Button(name:"startGridshot10", labelString: "10 seconds")
+        
+        panel.insert(owningLayer:self, entity:startGridshot10Button)
+
+        startGridshot10Button.clickHandler = onStartGridshot10ButtonClickHandler
     }
 
 
+    
     /*
     func createButton(name:String) -> String {
         let test = "private func onStart\(name)ButtonClickHandler(control: Control, localLocation: Point) {"
@@ -55,6 +77,8 @@ class MenuInteractionLayer : Layer {
     private func onStartRandomButtonClickHandler(control: Control, localLocation: Point) {
         director.enqueueScene(scene:gamesArray.randomElement()!)
         director.transitionToNextScene()
+        //createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:150, y:100), layoutStyle:.uniformColumn)
+        
     }
     
     private func onStartGridshotButtonClickHandler(control: Control, localLocation: Point) {    
@@ -72,5 +96,18 @@ class MenuInteractionLayer : Layer {
         director.transitionToNextScene()
     }
 
+    private func onStartMassShotButtonClickHandler(control: Control, localLocation: Point) {
+        director.enqueueScene(scene:MassShotScene())
+        director.transitionToNextScene()
+    }
+
+
+
+    private func onStartGridshot10ButtonClickHandler(control: Control, localLocation: Point) {
+        //GridshotInteractionLayer.shared.timeSet = 5
+        director.enqueueScene(scene:GridshotScene())
+        director.transitionToNextScene()
+    }
+    
     
 }
