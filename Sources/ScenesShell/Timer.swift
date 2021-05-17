@@ -26,6 +26,10 @@ class Timer: RenderableEntity {
         canvasXpoint = canvasSize.center.x
         canvasYpoint = canvasSize.center.y
     }    
+
+    public func setTime(seconds:Int) {
+        endTimeLimit = seconds
+    }
     
     func createTimer(canvas: Canvas, seconds: Int, color:Color) {
         let timerText = Text(location:Point(x: canvasXpoint, y: 30), text: "\(seconds)")

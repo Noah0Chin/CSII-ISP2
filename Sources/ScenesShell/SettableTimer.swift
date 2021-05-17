@@ -29,6 +29,7 @@ class SettableTimer: RenderableEntity {
 
     public func setTime(endTime:Int) {
         endTimeLimit = endTime
+        print("from SettableTimer.swift: \(endTimeLimit)")
     }
 
         

@@ -19,9 +19,10 @@ class MenuInteractionLayer : Layer {
         super.init(name:"Menu Interaction")
         
 
-        createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:300, y:100),
-                    layoutStyle:.uniformColumn)
+        /*createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:300, y:100),
+                    layoutStyle:.uniformColumn) */
         
+        SettableTimer().setTime(endTime:10)
         
         let startRandomButton = Button(name:"startRandom", labelString: "Random",
                                          topLeft: Point(x: 50, y: 25))
@@ -56,10 +57,13 @@ class MenuInteractionLayer : Layer {
         insert(entity:panel, at:.front)
 
         let startGridshot10Button = Button(name:"startGridshot10", labelString: "10 seconds")
+        let startGridshot30Button = Button(name:"startGridshot30", labelString: "30 seconds")
         
         panel.insert(owningLayer:self, entity:startGridshot10Button)
+        panel.insert(owningLayer:self, entity:startGridshot30Button)
 
         startGridshot10Button.clickHandler = onStartGridshot10ButtonClickHandler
+        startGridshot30Button.clickHandler = onStartGridshot30ButtonClickHandler
     }
 
 
@@ -82,8 +86,9 @@ class MenuInteractionLayer : Layer {
     }
     
     private func onStartGridshotButtonClickHandler(control: Control, localLocation: Point) {    
-        director.enqueueScene(scene:GridshotScene())
-        director.transitionToNextScene()
+        //director.enqueueScene(scene:GridshotScene())
+        //director.transitionToNextScene()
+        createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:200, y:100), layoutStyle:.uniformColumn)        
     }
 
     private func onStartFlickshotButtonClickHandler(control: Control, localLocation: Point) {
@@ -103,10 +108,15 @@ class MenuInteractionLayer : Layer {
 
 
 
-    private func onStartGridshot10ButtonClickHandler(control: Control, localLocation: Point) {
-        //GridshotInteractionLayer.shared.timeSet = 5
+    private func onStartGridshot10ButtonClickHandler(control: Control, localLocation: Point) {        
         director.enqueueScene(scene:GridshotScene())
         director.transitionToNextScene()
+        SettableTimer().setTime(endTime:10)        
+    }
+    private func onStartGridshot30ButtonClickHandler(control: Control, localLocation: Point) {        
+        director.enqueueScene(scene:GridshotScene())
+        director.transitionToNextScene()
+        SettableTimer().setTime(endTime:30)        
     }
     
     
