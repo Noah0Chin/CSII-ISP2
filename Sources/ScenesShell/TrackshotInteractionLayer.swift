@@ -5,8 +5,8 @@ import ScenesControls
 
 class TrackshotInteractionLayer : Layer {
 
-    var target = GridshotTarget(center:Point(x:960, y:500), radiusX:20, radiusY: 20)
-    let timer = Timer(enqueueScene:ScoreScene(), timeLimit:20)
+    var target = TrackshotTarget(center:Point(x:960, y:500), radiusX: 25, radiusY: 25)
+    let timer = Timer(enqueueScene:ScoreScene(), timeLimit:30)
 
     public init() {
         super.init(name: "Trackshot Interaction")
