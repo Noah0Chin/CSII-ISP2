@@ -1,40 +1,18 @@
 import Scenes
 import Igis
+import Foundation
 import ScenesControls
 
 class GridshotInteractionLayer : Layer {
-   // var didRender = false
-//    var xPosition : Int
-  //  var yPosition : Int
 
-    init() {
+    var target = GridshotTarget(center:Point(x:960, y:500), radiusX: 20, radiusY: 20) // 960, 500
+
+    //var didRender = false
+    
+    public init() {
         super.init(name:"Gridshot Interaction")
 
-        
-        let getNewPositionButton = Button(name: "NewPosition", labelString: "New Position", topLeft: Point(x: 500, y:500))
-        getNewPositionButton.clickHandler = getNewPositionButtonClickHandler
-        insert(entity: getNewPositionButton, at: .front)
+        insert(entity: target, at:.front)
     }
 
-    // Render the objects and potentially the canvas where the objects will spawn
-/*    override func render(canvas:Canvas) {
-        if let canvasSize = canvas.canvasSize, !didRender {
-            
-            // render one target
-            
-            didRender = true
-        }
-    }
-*/
-    func getNewPosition() {
-    }
-
-    func getNewPositionButtonClickHandler(control: Control, localLocation: Point) {
-        getNewPosition()
-    }
-    
 }
-
-
-
-    
