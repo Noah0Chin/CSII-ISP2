@@ -81,7 +81,34 @@ class Target: RenderableEntity, EntityMouseClickHandler {
         ellipse.radiusX += dimensionX
         ellipse.radiusY += dimensionY
 
+        // Form a bounding rectangle around the canvas
+        let canvasBoundingRect = Rect(size:canvasSize)
+
+        // Form a bounding rect around the target (ellipse)
+        let targetBoundingRect = Rect(topLeft:Point(x:ellipse.center.x-ellipse.radiusX, y:ellipse.center.y-ellipse.radiusY),
+                                    size:Size(width:ellipse.radiusX*2, height:ellipse.radiusY*2))
+
+        // Determine if we've moved outside of the canvas boundary rect
+        let tooFarLeft = targetBoundingRect.topLeft.x < canvasBoundingRect.topLeft.x
+        let tooFarRight = targetBoundingRect.topLeft.x + targetBoundingRect.size.width > canvasBoundingRect.topLeft.x + canvasBoundingRect.size.width
+
+
         
+        let tooFarUp = targetBoundingRect.topLeft.y < canvasBoundingRect.topLeft.y
+        let tooFarDown = targetBoundingRect.topLeft.y + targetBoundingRect.size.height > canvasBoundingRect.topLeft.y + canvasBoundingRect.size.height
+
+          
+          // If we're too far to the left or right, we bounce the x velocity
+          if tooFarLeft || tooFarRight {
+            velocityX = -velocityX
+          }
+          
+          // if we're too far up or down, we bounce the y velocity
+          if tooFarDown || tooFarUp {
+              velocityY = -velocityY
+          }
+
+          
     }
     
 
