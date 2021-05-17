@@ -2,7 +2,7 @@ import Scenes
 import Foundation
 import Igis
 
-class Target: RenderableEntity, EntityMouseClickHandler {
+class GridshotTarget: RenderableEntity, EntityMouseClickHandler {
 
     // Creates a an ellipse which is the Target
     //    let ellipse = Ellipse(center:Point(x:0,y:0), radiusX:30, radiusY:30, fillMode:.fillAndStroke)
@@ -81,14 +81,16 @@ class Target: RenderableEntity, EntityMouseClickHandler {
         
     }
     
+    var canvasX = 0
+    var canvasY = 0
 
     override func setup(canvasSize:Size, canvas:Canvas) {
-
+        canvasX = canvasSize.center.x
+        canvasY = canvasSize.center.y        
         dispatcher.registerEntityMouseClickHandler(handler:self)
         canvas.setup(targetSound)
     }
 
-    
     override func teardown() {
         dispatcher.unregisterEntityMouseClickHandler(handler:self)      
     }
@@ -101,9 +103,15 @@ class Target: RenderableEntity, EntityMouseClickHandler {
 
     
     override func render(canvas: Canvas) {
-        if destroyed == false {
-        canvas.render(strokeStyle, fillStyle, lineWidth, ellipse)
+        if destroyed == true {
+            let xPosition = Int.random(in: 200 ..< canvasX*2)
+            let yPosition = Int.random(in: 200 ..< canvasY*2)            
+            ellipse.center = Point(x:xPosition, y:yPosition)
+            destroyed = !destroyed
+        } else {         
+            canvas.render(strokeStyle, fillStyle, lineWidth, ellipse)            
         }
+    
         if targetSound.isReady && playTargetBreakSound == true{
             canvas.render(targetSound)
             playTargetBreakSound = !playTargetBreakSound
