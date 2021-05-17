@@ -85,7 +85,6 @@ class GunShot: RenderableEntity, EntityMouseClickHandler {
         if gunshotSound.isReady && playGunshotSound == true{
             canvas.render(gunshotSound)
             print("played sound")
-            //            isGunshotSoundPlaying = true
             playGunshotSound = !playGunshotSound
         }
 
