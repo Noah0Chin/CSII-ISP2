@@ -15,18 +15,10 @@ class MenuInteractionLayer : Layer {
         insert(entity: startGridshotButton, at: .front)
         
     }
-    /*
-    override func render(canvas:Canvas) {
-        if let canvasSize = canvas.canvasSize, !didRender{
-            
-            didRender = true
-        } 
-    }
-    */
 
     private func onStartGridshotButtonClickHandler(control: Control, localLocation: Point) {    
         //ShellDirector().startGridshot()
-        director.enqueueScene(scene:GridshotScene())
+        director.enqueueScene(scene:MainScene())
         director.transitionToNextScene()
     }
 }

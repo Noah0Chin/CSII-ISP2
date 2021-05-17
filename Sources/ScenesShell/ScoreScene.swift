@@ -14,15 +14,16 @@ class ScoreScene : Scene {
        and one for the foreground.
      */
     
-    let backgroundLayer = BackgroundLayer()
+    let scoreBackgroundLayer = ScoreBackgroundLayer()
     let scoreInteractionLayer = ScoreInteractionLayer()
+    
     init() {
         // Using a meaningful name can be helpful for debugging
         super.init(name:"Score Scene")
 
         // We insert our Layers in the constructor
         // We place each layer in front of the previous layer
-        insert(layer:backgroundLayer, at:.back)
-        insert(layer:scoreInteractionLayer, at:.inFrontOf(object:backgroundLayer))
+        insert(layer:scoreBackgroundLayer, at:.back)
+        insert(layer:scoreInteractionLayer, at:.inFrontOf(object:scoreBackgroundLayer))
     }
 }
