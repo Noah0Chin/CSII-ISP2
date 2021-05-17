@@ -15,17 +15,17 @@ class MenuScene : Scene {
      */
     
     let backgroundLayer = BackgroundLayer()
-    let menuButtonLayer = MenuButtonLayer() // 
+//     let menuButtonLayer = MenuButtonLayer()
     let menuInteractionLayer = MenuInteractionLayer()
 
     init() {
         // Using a meaningful name can be helpful for debugging
-        super.init(name:"Main")
+        super.init(name:"Menu Scene")
 
         // We insert our Layers in the constructor
         // We place each layer in front of the previous layer
         insert(layer:backgroundLayer, at:.back)
         insert(layer:menuInteractionLayer, at:.inFrontOf(object:backgroundLayer))
-        insert(layer:menuButtonLayer, at:.front)
+        // insert(layer:menuButtonLayer, at:.front)
     }
 }

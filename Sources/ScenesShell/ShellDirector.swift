@@ -20,19 +20,20 @@ import Scenes
 class ShellDirector : Director {
     required init() {
         super.init()
+        enqueueScene(scene:MainScene())        
+        //        enqueueScene(scene:GridshotScene())
         enqueueScene(scene:MenuScene())
-//        enqueueScene(scene:GridshotScene())
+        transitionToNextScene()
     }
 
-
-    // The two lines below enqueue the Main Menu scene and then transitions to it instantly.
     
     func startGridshot() {
-//        enqueueScene(scene:GridshotScene())
-        transitionToNextScene()
-//        dequeueScene(scene:MenuScene())
+        //enqueueScene(scene:GridshotScene())
+        transitionToNextScene()        
         print("Transitioning to Gridshot Scene")
-    }
+    }        
+
+    
     
     // if MenuScene.swap() is true, then transition scene here. In menu, add button that makes swap function true when it is pressed
     // Below code is for transition to different game scenes.
