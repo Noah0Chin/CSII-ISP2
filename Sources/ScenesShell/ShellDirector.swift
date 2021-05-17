@@ -21,13 +21,17 @@ class ShellDirector : Director {
     required init() {
         super.init()
         enqueueScene(scene:MenuScene())
+//        enqueueScene(scene:GridshotScene())
     }
 
 
     // The two lines below enqueue the Main Menu scene and then transitions to it instantly.
+    
     func startGridshot() {
-        enqueueScene(scene:GridshotScene())
+//        enqueueScene(scene:GridshotScene())
         transitionToNextScene()
+//        dequeueScene(scene:MenuScene())
+        print("Transitioning to Gridshot Scene")
     }
     
     // if MenuScene.swap() is true, then transition scene here. In menu, add button that makes swap function true when it is pressed

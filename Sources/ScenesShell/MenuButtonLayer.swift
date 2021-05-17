@@ -1,7 +1,7 @@
 import Scenes
 import Igis
 
-class menuButtonLayer : Layer {
+class MenuButtonLayer : Layer {
 //        var didRender = false
 
 

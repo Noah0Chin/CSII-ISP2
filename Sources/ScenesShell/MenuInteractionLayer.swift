@@ -13,7 +13,7 @@ class MenuInteractionLayer : Layer {
 
         let startGridshotButton = Button(name:"startGridshot", labelString: "Play Gridshot",
                                          topLeft: Point(x: 50, y: 50))
-        startGridshotButton.clickHandler = onStartGridShotButtonClickHandler
+        startGridshotButton.clickHandler = onStartGridshotButtonClickHandler
         insert(entity: startGridshotButton, at: .front)
         
     }
