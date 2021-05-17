@@ -56,10 +56,8 @@ class Timer: RenderableEntity {
             // this resets adds a frame everytime a frame has passed, and will render the timer with red an white blinking lights when there is 5 seconds left
             frameCounter += 1
             if timerClose && frameCounter < 15 {
-                createTimer(canvas:canvas,seconds:seconds,color:Color(.white))
-
-            } else if timerClose && frameCounter > 15 && frameCounter < 29 {
                 createTimer(canvas:canvas,seconds:seconds,color:Color(.red))
+
             } else {
                 createTimer(canvas:canvas,seconds:seconds,color:Color(.white))
             }
@@ -67,7 +65,7 @@ class Timer: RenderableEntity {
         }
 
         // boolean to help keep track of red and white blink when time is nearing a end
-        if seconds >= endTimeLimit - (endTimeLimit - 5) {
+        if seconds >= endTimeLimit - 5 {
             timerClose = true
         }
 

@@ -13,12 +13,21 @@ class MenuInteractionLayer : Layer {
                                          topLeft: Point(x: 50, y: 50))
         startGridshotButton.clickHandler = onStartGridshotButtonClickHandler
         insert(entity: startGridshotButton, at: .front)
-        
+
+        let startWipeshotButton = Button(name:"startWipeshot", labelString: "Play Wipeshot",
+                                         topLeft: Point(x: 50, y: 100))
+        startWipeshotButton.clickHandler = onStartWipeshotButtonClickHandler
+        insert(entity: startWipeshotButton, at: .front)        
     }
 
     private func onStartGridshotButtonClickHandler(control: Control, localLocation: Point) {    
         //ShellDirector().startGridshot()
-        director.enqueueScene(scene:MainScene())
+        director.enqueueScene(scene:GridshotScene())
+        director.transitionToNextScene()
+    }
+
+    private func onStartWipeshotButtonClickHandler(control: Control, localLocation: Point) {
+        director.enqueueScene(scene:WipeshotScene())
         director.transitionToNextScene()
     }
 }
