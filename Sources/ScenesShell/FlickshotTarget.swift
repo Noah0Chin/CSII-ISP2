@@ -2,7 +2,7 @@ import Scenes
 import Foundation
 import Igis
 
-class WipeshotTarget: RenderableEntity, EntityMouseClickHandler {
+class FlickshotTarget: RenderableEntity, EntityMouseClickHandler {
 
     // Creates a an ellipse which is the Target
     //    let ellipse = Ellipse(center:Point(x:0,y:0), radiusX:30, radiusY:30, fillMode:.fillAndStroke)
