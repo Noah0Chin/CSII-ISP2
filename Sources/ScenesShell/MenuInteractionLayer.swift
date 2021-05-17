@@ -33,7 +33,6 @@ class MenuInteractionLayer : Layer {
                                          topLeft: Point(x: 50, y: 200))
         startTrackshotButton.clickHandler = onStartTrackshotButtonClickHandler
         insert(entity: startTrackshotButton, at: .front)
-
     }
 
 
