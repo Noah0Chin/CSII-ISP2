@@ -1,4 +1,6 @@
 import Scenes
+import Igis
+import Foundation
 
   /*
      This class is responsible for the interaction Layer.
@@ -8,16 +10,18 @@ import Scenes
 
 class InteractionLayer : Layer {
 
+    
 
-    let bullethole = GunShot()
-    let target = Target()
+    let target = Target(center:Point(x:250,y:300),radiusX: 10, radiusY:23)
     
       init() {
           // Using a meaningful name can be helpful for debugging
           super.init(name:"Interaction")
 
           // We insert our RenderableEntities in the constructor
-          insert(entity: target, at:.front)
-          insert(entity: bullethole, at: .front)
+          insert(entity: target, at:.front)         
+          target.changeVelocity(velocityX: 1, velocityY: 2)
+          
+
       }
   }
