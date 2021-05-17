@@ -3,7 +3,15 @@ import Foundation
 import Igis
 
 class GridshotTarget: RenderableEntity, EntityMouseClickHandler {
-
+    
+    var Score = 0
+    func renderLabel(canvas:Canvas, patternId:Int) {
+        let text = Text(location:Point(x:150, y:100), text:"\(Score)")
+        text.font = "80pt Roboto"
+        canvas.render(FillStyle(color:Color(.mediumpurple)))
+        canvas.render(text)
+    }
+    
     // Creates a an ellipse which is the Target
     //    let ellipse = Ellipse(center:Point(x:0,y:0), radiusX:30, radiusY:30, fillMode:.fillAndStroke)
     var ellipse : Ellipse
@@ -80,7 +88,8 @@ class GridshotTarget: RenderableEntity, EntityMouseClickHandler {
 
         
     }
-    
+
+    // Positions for the center of the screen
     var canvasX = 0
     var canvasY = 0
 
@@ -94,13 +103,12 @@ class GridshotTarget: RenderableEntity, EntityMouseClickHandler {
     override func teardown() {
         dispatcher.unregisterEntityMouseClickHandler(handler:self)      
     }
-
     
     func onEntityMouseClick(globalLocation: Point) {
         destroyed = true
-        playTargetBreakSound = true
+        playTargetBreakSound = true        
+        Score += 100
     }
-
     
     override func render(canvas: Canvas) {
         if destroyed == true {
@@ -116,15 +124,14 @@ class GridshotTarget: RenderableEntity, EntityMouseClickHandler {
             canvas.render(targetSound)
             playTargetBreakSound = !playTargetBreakSound
             print("target gone")
-        } 
+        }
+
+        renderLabel(canvas:canvas, patternId:Score)
         
     }
 
     override func boundingRect() -> Rect {
         return Rect(topLeft:Point(x:ellipse.center.x - ellipse.radiusX, y: ellipse.center.y - ellipse.radiusY), size: Size(width: ellipse.radiusX * 2, height: ellipse.radiusY * 2))
     
-    }
-
-    
-    
+    }        
 }

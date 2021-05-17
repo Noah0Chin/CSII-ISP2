@@ -4,6 +4,16 @@ import Igis
 
 class FlickshotTarget: RenderableEntity, EntityMouseClickHandler {
 
+
+    var Score = 0
+    func renderLabel(canvas:Canvas, patternId:Int) {
+        let text = Text(location:Point(x:150, y:100), text:"\(Score)")
+        text.font = "80pt Roboto"
+        canvas.render(FillStyle(color:Color(.mediumpurple)))
+        canvas.render(text)
+    }
+
+
     // Creates a an ellipse which is the Target
     //    let ellipse = Ellipse(center:Point(x:0,y:0), radiusX:30, radiusY:30, fillMode:.fillAndStroke)
     var ellipse : Ellipse
@@ -11,7 +21,7 @@ class FlickshotTarget: RenderableEntity, EntityMouseClickHandler {
     let fillStyle = FillStyle(color:Color(.red))
     let lineWidth = LineWidth(width:8)
 
-
+    
     
     // variables for target sound
     let targetSound : Audio
@@ -99,6 +109,7 @@ class FlickshotTarget: RenderableEntity, EntityMouseClickHandler {
     func onEntityMouseClick(globalLocation: Point) {
         destroyed = true
         playTargetBreakSound = true
+        Score += 100
     }
 
     var centerPosition = false
@@ -126,6 +137,8 @@ class FlickshotTarget: RenderableEntity, EntityMouseClickHandler {
             print("target gone")
         } 
         
+        renderLabel(canvas:canvas, patternId:Score)
+
     }
         
     override func boundingRect() -> Rect {
