@@ -73,7 +73,6 @@ class MenuInteractionLayer : Layer {
         background().shouldMusicPlay()
     }
 
-<<<<<<< HEAD
     func flickshotPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
         // Create and insert the panel into the LAYER
         let panel = Panel(name:name, topLeft:topLeft, layoutStyle:layoutStyle)
@@ -122,8 +121,6 @@ class MenuInteractionLayer : Layer {
         background().shouldMusicPlay()
     }
     
-=======
->>>>>>> 9dfcce26fd02e71d8a7cc7757e2ea57770dd7c6e
     
     func gamesPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
         // Create and insert the panel into the LAYER
