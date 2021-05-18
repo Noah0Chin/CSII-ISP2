@@ -73,6 +73,7 @@ class MenuInteractionLayer : Layer {
         background().shouldMusicPlay()
     }
 
+<<<<<<< HEAD
     func flickshotPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
         // Create and insert the panel into the LAYER
         let panel = Panel(name:name, topLeft:topLeft, layoutStyle:layoutStyle)
@@ -121,6 +122,8 @@ class MenuInteractionLayer : Layer {
         background().shouldMusicPlay()
     }
     
+=======
+>>>>>>> 9dfcce26fd02e71d8a7cc7757e2ea57770dd7c6e
     
     func gamesPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
         // Create and insert the panel into the LAYER
@@ -173,7 +176,7 @@ class MenuInteractionLayer : Layer {
         let background = backgroundLayer.menuBackground
         return background
     }
-
+    
     func timerOjbect() -> Timer {
         guard let timerO = scene as? FlickshotScene else { 
             fatalError("menuScene of type FlickshotScene is required")
@@ -185,7 +188,7 @@ class MenuInteractionLayer : Layer {
     
    
     private func onStartRandomButtonClickHandler(control: Control, localLocation: Point) {
-                background().shouldMusicPlay()
+        background().shouldMusicPlay()
         director.enqueueScene(scene:gamesArray.randomElement()!)
         director.transitionToNextScene()
         //createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:150, y:100), layoutStyle:.uniformColumn)        
