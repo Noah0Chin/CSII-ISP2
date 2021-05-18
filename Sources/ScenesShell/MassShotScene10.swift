@@ -13,7 +13,7 @@ class MassShotScene10 : Scene {
        One for the background, one for interaction,
        and one for the foreground.
      */
-    let massShotBackgroundLayer = MassShotBackgroundLayer()
+    let backgroundLayer = BackgroundLayer()
     let massShotInteractionLayer = MassShotInteractionLayer10()
 
 
@@ -23,8 +23,8 @@ class MassShotScene10 : Scene {
 
         // We insert our Layers in the constructor
         // We place each layer in front of the previous layer
-        insert(layer:massShotBackgroundLayer, at:.back)
-        insert(layer:massShotInteractionLayer, at:.inFrontOf(object:massShotBackgroundLayer))
+        insert(layer:backgroundLayer, at:.back)
+        insert(layer:massShotInteractionLayer, at:.inFrontOf(object:backgroundLayer))
     }
     
 }

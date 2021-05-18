@@ -35,7 +35,7 @@ class MassShotBackground : RenderableEntity {
         }
 
         
-            massShotBackgroundAudio = Audio(sourceURL:massShotBackgroundAudioURL)
+        massShotBackgroundAudio = Audio(sourceURL:massShotBackgroundAudioURL)
             
         
         // Using a meaningful name can be helpful for debugging

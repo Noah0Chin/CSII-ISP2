@@ -45,15 +45,15 @@ class MassShotInteractionLayer : Layer {
           insert(entity:endGameTimer, at: .front)
       }
 
-    func background() -> MassShotBackground {
+
+    func background() -> Background {
         guard let mainScene = scene as? MassShotScene else {
             fatalError("mainScene of type GridshotScene is required")
         }
-        let backgroundLayer = mainScene.massShotBackgroundLayer
+        let backgroundLayer = mainScene.backgroundLayer
         let background = backgroundLayer.background
         return background
-    }
-    
+    }    
       override func postCalculate(canvas: Canvas) {
           
           // keep tracks of frames for time
