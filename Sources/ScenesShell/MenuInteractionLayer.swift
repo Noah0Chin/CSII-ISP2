@@ -17,8 +17,7 @@ class MenuInteractionLayer : Layer {
     
         
     init() {
-        super.init(name:"Menu Interaction")
-        
+        super.init(name:"Menu Interaction")        
 
         /*createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:300, y:100),
                     layoutStyle:.uniformColumn) */
@@ -30,29 +29,35 @@ class MenuInteractionLayer : Layer {
         startRandomButton.clickHandler = onStartRandomButtonClickHandler
         insert(entity: startRandomButton, at: .front)        
 
+        let startGamesButton = Button(name:"gamesRandom", labelString: "Games",
+                                         topLeft: Point(x: 50, y: 100))
+        startGamesButton.clickHandler = onStartGamesButtonClickHandler
+        insert(entity: startGamesButton, at: .front)        
         
+        /*
         let startGridshotButton = Button(name:"startGridshot", labelString: "Play Gridshot",
                                          topLeft: Point(x: 50, y: 100))
         startGridshotButton.clickHandler = onStartGridshotButtonClickHandler
         insert(entity: startGridshotButton, at: .front)
-
+        
         let startFlickshotButton = Button(name:"startFlickshot", labelString: "Play Flickshot",
-                                         topLeft: Point(x: 50, y: 150))
+                                          topLeft: Point(x: 50, y: 150))
         startFlickshotButton.clickHandler = onStartFlickshotButtonClickHandler
         insert(entity: startFlickshotButton, at: .front)
 
         let startTrackshotButton = Button(name:"startTrackshot", labelString: "Play Trackshot",
-                                         topLeft: Point(x: 50, y: 200))
+                                          topLeft: Point(x: 50, y: 200))
         startTrackshotButton.clickHandler = onStartTrackshotButtonClickHandler
         insert(entity: startTrackshotButton, at: .front)
-
+        
         let startMassShotButton = Button(name:"startMassShot", labelString: "Play MassShot",
                                          topLeft: Point(x: 50, y: 250))
         startMassShotButton.clickHandler = onStartMassShotButtonClickHandler
         insert(entity: startMassShotButton, at: .front)        
+         */
     }
 
-    func createPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
+    func gridshotPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
         // Create and insert the panel into the LAYER
         let panel = Panel(name:name, topLeft:topLeft, layoutStyle:layoutStyle)
         insert(entity:panel, at:.front)
@@ -68,6 +73,36 @@ class MenuInteractionLayer : Layer {
         background().shouldMusicPlay()
     }
 
+    func gamesPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
+        // Create and insert the panel into the LAYER
+        let panel = Panel(name:name, topLeft:topLeft, layoutStyle:layoutStyle)
+        insert(entity:panel, at:.front)
+
+        let startGridshotButton = Button(name:"startGridshot", labelString: "Play Gridshot")
+        panel.insert(owningLayer:self, entity:startGridshotButton)
+        startGridshotButton.clickHandler = onStartGridshotButtonClickHandler
+        
+        let emptyButton = Button(name:"empty", labelString: " ")
+        panel.insert(owningLayer:self, entity:emptyButton)
+        
+        let startFlickshotButton = Button(name:"startFlickshot", labelString: "Play Flickshot")
+        panel.insert(owningLayer:self, entity:startFlickshotButton)
+        startFlickshotButton.clickHandler = onStartFlickshotButtonClickHandler
+        
+        let emptyButton2 = Button(name:"empty", labelString: " ")        
+        panel.insert(owningLayer:self, entity:emptyButton2)
+        
+        let startTrackshotButton = Button(name:"startTrackshot", labelString: "Play Trackshot")
+        panel.insert(owningLayer:self, entity:startTrackshotButton)
+        startTrackshotButton.clickHandler = onStartTrackshotButtonClickHandler
+
+        let emptyButton3 = Button(name:"empty", labelString: " ")        
+        panel.insert(owningLayer:self, entity:emptyButton3)
+        
+        let startMassShotButton = Button(name:"startMassShot", labelString: "Play MassShot")
+        panel.insert(owningLayer:self, entity:startMassShotButton)
+        startMassShotButton.clickHandler = onStartMassShotButtonClickHandler
+    }
 
     
     /*
@@ -101,14 +136,20 @@ class MenuInteractionLayer : Layer {
                 background().shouldMusicPlay()
         director.enqueueScene(scene:gamesArray.randomElement()!)
         director.transitionToNextScene()
-        //createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:150, y:100), layoutStyle:.uniformColumn)
-        
+        //createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:150, y:100), layoutStyle:.uniformColumn)        
     }
+
+    private func onStartGamesButtonClickHandler(control: Control, localLocation: Point) {
+        background().shouldMusicPlay()
+        
+        gamesPanel(name:"Horizontal", labelString:"Horizontal Panel", topLeft:Point(x:50, y:200), layoutStyle:.uniformRow)        
+    }
+
     
     private func onStartGridshotButtonClickHandler(control: Control, localLocation: Point) {    
         //director.enqueueScene(scene:GridshotScene())
         //director.transitionToNextScene()
-        createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:200, y:100), layoutStyle:.uniformColumn)        
+        gridshotPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:200, y:100), layoutStyle:.uniformColumn)        
     }
 
     private func onStartFlickshotButtonClickHandler(control: Control, localLocation: Point) {
