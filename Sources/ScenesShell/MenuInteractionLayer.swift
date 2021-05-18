@@ -64,6 +64,7 @@ class MenuInteractionLayer : Layer {
 
         startGridshot10Button.clickHandler = onStartGridshot10ButtonClickHandler
         startGridshot30Button.clickHandler = onStartGridshot30ButtonClickHandler
+        background().shouldMusicPlay()
     }
 
 
@@ -108,8 +109,8 @@ class MenuInteractionLayer : Layer {
 
     private func onStartTrackshotButtonClickHandler(control: Control, localLocation: Point) {
         background().shouldMusicPlay()
-       // director.enqueueScene(scene:TrackshotScene())
-       // director.transitionToNextScene()
+        director.enqueueScene(scene:TrackshotScene())
+        director.transitionToNextScene()
        
        
     }
