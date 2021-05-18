@@ -63,16 +63,64 @@ class MenuInteractionLayer : Layer {
         insert(entity:panel, at:.front)
 
         let startGridshot10Button = Button(name:"startGridshot10", labelString: "10 seconds")
-        let startGridshot30Button = Button(name:"startGridshot30", labelString: "30 seconds")
+        let startGridshot45Button = Button(name:"startGridshot45", labelString: "45 seconds")
         
         panel.insert(owningLayer:self, entity:startGridshot10Button)
-        panel.insert(owningLayer:self, entity:startGridshot30Button)
+        panel.insert(owningLayer:self, entity:startGridshot45Button)
 
         startGridshot10Button.clickHandler = onStartGridshot10ButtonClickHandler
-        startGridshot30Button.clickHandler = onStartGridshot30ButtonClickHandler
+        startGridshot45Button.clickHandler = onStartGridshot45ButtonClickHandler
         background().shouldMusicPlay()
     }
 
+    func flickshotPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
+        // Create and insert the panel into the LAYER
+        let panel = Panel(name:name, topLeft:topLeft, layoutStyle:layoutStyle)
+        insert(entity:panel, at:.front)
+
+        let startFlickshot10Button = Button(name:"startFlickshot10", labelString: "10 seconds")
+        let startFlickshot45Button = Button(name:"startFlickshot45", labelString: "45 seconds")
+        
+        panel.insert(owningLayer:self, entity:startFlickshot10Button)
+        panel.insert(owningLayer:self, entity:startFlickshot45Button)
+
+        startFlickshot10Button.clickHandler = onStartFlickshot10ButtonClickHandler
+        startFlickshot45Button.clickHandler = onStartFlickshot45ButtonClickHandler
+        background().shouldMusicPlay()
+    }
+
+    func trackshotPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
+        // Create and insert the panel into the LAYER
+        let panel = Panel(name:name, topLeft:topLeft, layoutStyle:layoutStyle)
+        insert(entity:panel, at:.front)
+
+        let startTrackshot10Button = Button(name:"startTrackshot10", labelString: "10 seconds")
+        let startTrackshot45Button = Button(name:"startTrackshot45", labelString: "45 seconds")
+        
+        panel.insert(owningLayer:self, entity:startTrackshot10Button)
+        panel.insert(owningLayer:self, entity:startTrackshot45Button)
+
+        startTrackshot10Button.clickHandler = onStartTrackshot10ButtonClickHandler
+        startTrackshot45Button.clickHandler = onStartTrackshot45ButtonClickHandler
+        background().shouldMusicPlay()
+    }
+
+    func massShotPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
+        // Create and insert the panel into the LAYER
+        let panel = Panel(name:name, topLeft:topLeft, layoutStyle:layoutStyle)
+        insert(entity:panel, at:.front)
+
+        let startMassShot10Button = Button(name:"startMassShot10", labelString: "10 seconds")
+        let startMassShot45Button = Button(name:"startMassShot45", labelString: "45 seconds")
+        
+        panel.insert(owningLayer:self, entity:startMassShot10Button)
+        panel.insert(owningLayer:self, entity:startMassShot45Button)
+
+        startMassShot10Button.clickHandler = onStartMassShot10ButtonClickHandler
+        startMassShot45Button.clickHandler = onStartMassShot45ButtonClickHandler
+        background().shouldMusicPlay()
+    }
+    
     
     func gamesPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
         // Create and insert the panel into the LAYER
@@ -103,6 +151,9 @@ class MenuInteractionLayer : Layer {
         let startMassShotButton = Button(name:"startMassShot", labelString: "Play MassShot")
         panel.insert(owningLayer:self, entity:startMassShotButton)
         startMassShotButton.clickHandler = onStartMassShotButtonClickHandler
+
+        let emptyButton4 = Button(name:"empty", labelString: " ")        
+        panel.insert(owningLayer:self, entity:emptyButton4)
     }
 
     
@@ -139,37 +190,29 @@ class MenuInteractionLayer : Layer {
         director.transitionToNextScene()
         //createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:150, y:100), layoutStyle:.uniformColumn)        
     }
-
+    let xPos = 50
+    let yPos = 200
     private func onStartGamesButtonClickHandler(control: Control, localLocation: Point) {
-        background().shouldMusicPlay()
-        
-        gamesPanel(name:"Horizontal", labelString:"Horizontal Panel", topLeft:Point(x:50, y:200), layoutStyle:.uniformRow)        
+        background().shouldMusicPlay()        
+        gamesPanel(name:"Horizontal", labelString:"Horizontal Panel", topLeft:Point(x:xPos, y:yPos), layoutStyle:.uniformRow)        
     }
 
     
-    private func onStartGridshotButtonClickHandler(control: Control, localLocation: Point) {    
-        //director.enqueueScene(scene:GridshotScene())
-        //director.transitionToNextScene()
-        gridshotPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:200, y:100), layoutStyle:.uniformColumn)        
+    private func onStartGridshotButtonClickHandler(control: Control, localLocation: Point) {
+        //original point is at 50, 200
+        gridshotPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:xPos+160, y:yPos), layoutStyle:.uniformColumn)        
     }
 
     private func onStartFlickshotButtonClickHandler(control: Control, localLocation: Point) {
-        background().shouldMusicPlay()
-        director.enqueueScene(scene:FlickshotScene())
-        shouldTransition = true             
+        flickshotPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:xPos+455, y:yPos), layoutStyle:.uniformColumn)                
     }
 
     private func onStartTrackshotButtonClickHandler(control: Control, localLocation: Point) {
-        background().shouldMusicPlay()
-        director.enqueueScene(scene:TrackshotScene())
-        shouldTransition = true                    
+        trackshotPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:xPos+750, y:yPos), layoutStyle:.uniformColumn)                        
     }
 
     private func onStartMassShotButtonClickHandler(control: Control, localLocation: Point) {
-        background().shouldMusicPlay()
-        director.enqueueScene(scene:MassShotScene())
-        shouldTransition = true                    
-
+        massShotPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:xPos+1045, y:yPos), layoutStyle:.uniformColumn)                
     }
 
 
@@ -178,18 +221,47 @@ class MenuInteractionLayer : Layer {
         background().shouldMusicPlay()
         director.enqueueScene(scene:GridshotScene())
         shouldTransition = true                    
-//        director.transitionToNextScene()
-//        SettableTimer().setTime(endTime:10)
-//        background().shouldMusicPlay()
     }
-    private func onStartGridshot30ButtonClickHandler(control: Control, localLocation: Point) {
+    private func onStartGridshot45ButtonClickHandler(control: Control, localLocation: Point) {
         background().shouldMusicPlay()
         director.enqueueScene(scene:GridshotScene())
         shouldTransition = true                          
-//        director.transitionToNextScene()
-//        SettableTimer().setTime(endTime:30)
-//        background().shouldMusicPlay()
     }
+
+    private func onStartFlickshot10ButtonClickHandler(control: Control, localLocation: Point) {
+        background().shouldMusicPlay()
+        director.enqueueScene(scene:FlickshotScene())
+        shouldTransition = true                    
+    }
+    private func onStartFlickshot45ButtonClickHandler(control: Control, localLocation: Point) {
+        background().shouldMusicPlay()
+        director.enqueueScene(scene:FlickshotScene())
+        shouldTransition = true                          
+    }
+
+    private func onStartTrackshot10ButtonClickHandler(control: Control, localLocation: Point) {
+        background().shouldMusicPlay()
+        director.enqueueScene(scene:TrackshotScene())
+        shouldTransition = true                    
+    }
+    private func onStartTrackshot45ButtonClickHandler(control: Control, localLocation: Point) {
+        background().shouldMusicPlay()
+        director.enqueueScene(scene:TrackshotScene())
+        shouldTransition = true                          
+    }
+
+    private func onStartMassShot10ButtonClickHandler(control: Control, localLocation: Point) {
+        background().shouldMusicPlay()
+        director.enqueueScene(scene:MassShotScene())
+        shouldTransition = true                    
+    }
+    private func onStartMassShot45ButtonClickHandler(control: Control, localLocation: Point) {
+        background().shouldMusicPlay()
+        director.enqueueScene(scene:MassShotScene())
+        shouldTransition = true                          
+    }
+
+
     
     override func postCalculate(canvas: Canvas) {
         if shouldTransition {
