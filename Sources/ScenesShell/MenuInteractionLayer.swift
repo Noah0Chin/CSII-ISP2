@@ -22,7 +22,7 @@ class MenuInteractionLayer : Layer {
         /*createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:300, y:100),
                     layoutStyle:.uniformColumn) */
         
-        SettableTimer().setTime(endTime:10)
+
         
         let startRandomButton = Button(name:"startRandom", labelString: "Random",
                                          topLeft: Point(x: 50, y: 25))
@@ -73,7 +73,7 @@ class MenuInteractionLayer : Layer {
         background().shouldMusicPlay()
     }
 
-<<<<<<< HEAD
+
     func flickshotPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
         // Create and insert the panel into the LAYER
         let panel = Panel(name:name, topLeft:topLeft, layoutStyle:layoutStyle)
@@ -122,8 +122,8 @@ class MenuInteractionLayer : Layer {
         background().shouldMusicPlay()
     }
     
-=======
->>>>>>> 9dfcce26fd02e71d8a7cc7757e2ea57770dd7c6e
+
+
     
     func gamesPanel(name:String, labelString:String, topLeft:Point, layoutStyle:Panel.LayoutStyle) {
         // Create and insert the panel into the LAYER
@@ -176,16 +176,53 @@ class MenuInteractionLayer : Layer {
         let background = backgroundLayer.menuBackground
         return background
     }
+
+    /*
+    func timerGridshot() -> Timer {
+        guard let timerO = scene as? GridshotScene else { 
+            fatalError("menuScene of type GridshotScene is required")
+        }
+        let backgroundLayer = timerO.gridshotInteractionLayer
+        let timerGridshot = backgroundLayer.timer
+        return timerGridshot
+    }
     
-    func timerOjbect() -> Timer {
+        
+    func timerFlickshot() -> Timer {
         guard let timerO = scene as? FlickshotScene else { 
             fatalError("menuScene of type FlickshotScene is required")
         }
         let backgroundLayer = timerO.flickshotInteractionLayer
-        let transmuttableTimer = backgroundLayer.timer
-        return transmuttableTimer
+        let timerFlickshot = backgroundLayer.timer
+        return timerFlickshot
     }
     
+
+        
+    func timerMassShot() -> Timer {
+        guard let timerO = scene as? MassShotScene else { 
+            fatalError("menuScene of type MassShotScene is required")
+        }
+        let backgroundLayer = timerO.massShotInteractionLayer
+        let timerMassShot = backgroundLayer.endGameTimer
+        return timerMassShot
+    }
+    
+
+        
+    func timerTrackshot() -> Timer {
+        guard let timerO = scene as? TrackshotScene else { 
+            fatalError("menuScene of type FlickShotScene is required")
+        }
+        let backgroundLayer = timerO.trackshotInteractionLayer
+        let timerTrackshot = backgroundLayer.timer
+        return timerTrackshot
+    }
+      */
+      
+
+
+
    
     private func onStartRandomButtonClickHandler(control: Control, localLocation: Point) {
         background().shouldMusicPlay()
@@ -221,7 +258,7 @@ class MenuInteractionLayer : Layer {
 
 
     private func onStartGridshot10ButtonClickHandler(control: Control, localLocation: Point) {
-        background().shouldMusicPlay()
+        background().shouldMusicPlay()     
         director.enqueueScene(scene:GridshotScene())
         shouldTransition = true                    
     }
@@ -233,7 +270,7 @@ class MenuInteractionLayer : Layer {
 
     private func onStartFlickshot10ButtonClickHandler(control: Control, localLocation: Point) {
         background().shouldMusicPlay()
-        director.enqueueScene(scene:FlickshotScene())
+        director.enqueueScene(scene:FlickshotScene10())
         shouldTransition = true                    
     }
     private func onStartFlickshot45ButtonClickHandler(control: Control, localLocation: Point) {
@@ -249,13 +286,13 @@ class MenuInteractionLayer : Layer {
     }
     private func onStartTrackshot45ButtonClickHandler(control: Control, localLocation: Point) {
         background().shouldMusicPlay()
-        director.enqueueScene(scene:TrackshotScene())
+        director.enqueueScene(scene:TrackshotScene10())
         shouldTransition = true                          
     }
 
     private func onStartMassShot10ButtonClickHandler(control: Control, localLocation: Point) {
         background().shouldMusicPlay()
-        director.enqueueScene(scene:MassShotScene())
+        director.enqueueScene(scene:MassShotScene10())
         shouldTransition = true                    
     }
     private func onStartMassShot45ButtonClickHandler(control: Control, localLocation: Point) {

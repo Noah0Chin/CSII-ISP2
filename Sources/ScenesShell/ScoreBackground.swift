@@ -14,7 +14,7 @@ class ScoreBackground : RenderableEntity {
     let congratsBackground : Image
     let ggBackground : Image
     let memeBackground : Image
-    
+    let audio : Audio
     init() {
 
         guard let congratsBackgroundURL = URL(string:"https://wallpaperaccess.com/full/3295969.jpg") else {
@@ -32,6 +32,12 @@ class ScoreBackground : RenderableEntity {
             fatalError("Failed to create the URL for memeBackground")
         }
         memeBackground = Image(sourceURL:memeBackgroundURL)
+
+
+        guard let audioURL = URL(string:"https://docs.google.com/uc?export=open&id=1HezmgYzGyXbO41re7YJh9qz_rTTc5fsc") else {
+            fatalError("no")
+        }
+        audio = Audio(sourceURL:audioURL)
         
         // Using a meaningful name can be helpful for debugging
         super.init(name:"ScoreBackground")
@@ -39,11 +45,15 @@ class ScoreBackground : RenderableEntity {
 
     var canvasYpoint = 0
     var canvasXpoint = 0
-    
+
+    public func noMusic() {
+        audio.mode = .pause
+    }
     override func setup(canvasSize: Size, canvas:Canvas) {
         canvas.setup(ggBackground)
         canvas.setup(congratsBackground)
         canvas.setup(memeBackground)
+        canvas.setup(audio)
         canvasXpoint = canvasSize.center.x
         canvasYpoint = canvasSize.center.y
     }
@@ -104,6 +114,9 @@ class ScoreBackground : RenderableEntity {
             } else {
                 createLabel(canvas:canvas, text:"Congratulations!!!!", color: Color(.white))
             }
+        }
+        if audio.isReady {
+            canvas.render(audio)
         }
     }
 }
