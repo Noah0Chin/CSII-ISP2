@@ -13,16 +13,16 @@ class GridshotInteractionLayer10 : Layer {
     //let timer = Timer(enqueueScene:ScoreScene(), timeLimit:45)
 
 
-    let timer = SettableTimer()
 
-    //let timer = Timer(enqueueScene:ScoreScene(), timeLimit:15)
+
+    let timer = Timer(enqueueScene:ScoreScene(), timeLimit:10)
     
     
     //var didRender = false
     
     public init() {
         super.init(name:"Gridshot Interaction")
-        SettableTimer().setTime(endTime:10)
+
 
         insert(entity: target, at:.front)
         insert(entity: timer, at:.front)
