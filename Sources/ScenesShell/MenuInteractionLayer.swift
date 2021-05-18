@@ -240,13 +240,15 @@ class MenuInteractionLayer : Layer {
     private func onStartRandomButtonClickHandler(control: Control, localLocation: Point) {
         background().shouldMusicPlay()
         director.enqueueScene(scene:gamesArray.randomElement()!)
-        director.transitionToNextScene()
+        shouldTransition = true                    
+
         //createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:150, y:100), layoutStyle:.uniformColumn)        
     }
     private func onStartRandom10ButtonClickHandler(control: Control, localLocation: Point) {
         background().shouldMusicPlay()
         director.enqueueScene(scene:games10Array.randomElement()!)
-        director.transitionToNextScene()
+        shouldTransition = true                    
+
         //createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:150, y:100), layoutStyle:.uniformColumn)        
     }
 
