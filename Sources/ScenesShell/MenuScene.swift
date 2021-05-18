@@ -14,7 +14,7 @@ class MenuScene : Scene {
        and one for the foreground.
      */
     
-    let backgroundLayer = BackgroundLayer()
+    let backgroundLayer = MenuBackgroundLayer()
 //     let menuButtonLayer = MenuButtonLayer()
     let menuInteractionLayer = MenuInteractionLayer()
 

@@ -94,16 +94,20 @@ class MenuInteractionLayer : Layer {
     private func onStartFlickshotButtonClickHandler(control: Control, localLocation: Point) {
         director.enqueueScene(scene:FlickshotScene())
         director.transitionToNextScene()
+        MenuBackground().shouldMusicPlay()
     }
 
     private func onStartTrackshotButtonClickHandler(control: Control, localLocation: Point) {
-        director.enqueueScene(scene:TrackshotScene())
-        director.transitionToNextScene()
+        MenuBackground().shouldMusicPlay()
+  //      director.enqueueScene(scene:TrackshotScene())
+//        director.transitionToNextScene()
+        MenuBackground().shouldMusicPlay()
     }
 
     private func onStartMassShotButtonClickHandler(control: Control, localLocation: Point) {
         director.enqueueScene(scene:MassShotScene())
         director.transitionToNextScene()
+        MenuBackground().shouldMusicPlay()
     }
 
 
@@ -111,12 +115,14 @@ class MenuInteractionLayer : Layer {
     private func onStartGridshot10ButtonClickHandler(control: Control, localLocation: Point) {        
         director.enqueueScene(scene:GridshotScene())
         director.transitionToNextScene()
-        SettableTimer().setTime(endTime:10)        
+        SettableTimer().setTime(endTime:10)
+        MenuBackground().shouldMusicPlay()
     }
     private func onStartGridshot30ButtonClickHandler(control: Control, localLocation: Point) {        
         director.enqueueScene(scene:GridshotScene())
         director.transitionToNextScene()
-        SettableTimer().setTime(endTime:30)        
+        SettableTimer().setTime(endTime:30)
+        MenuBackground().shouldMusicPlay()
     }
     
     
