@@ -14,9 +14,17 @@ class ScoreInteractionLayer : Layer {
         insert(entity: backToMainMenuButton, at: .front)
     }
     
+    func background() -> ScoreBackground {
+        guard let menuScene = scene as? ScoreScene else {
+            fatalError("menuScene of type ScoreScene is required")            
+        }
+        let backgroundLayer = menuScene.scoreBackgroundLayer
+        let background = backgroundLayer.background
+        return background
+    }
 
     private func onBackToMainMenuButtonClickHandler(control: Control, localLocation: Point) {
         director.enqueueScene(scene:MenuScene())
-        director.transitionToNextScene()
+        background().noMusic()
     }
 }

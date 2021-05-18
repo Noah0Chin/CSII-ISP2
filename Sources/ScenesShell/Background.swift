@@ -61,8 +61,15 @@ class Background : RenderableEntity {
         canvas.setup(icebox)
         canvas.setup(minecraftshaders)
     }
+    
+    public func noMusic() {
+        backgroundAudio.mode = .pause        
+    }
 
-
+    public func yesMusic() {
+        backgroundAudio.mode = .play
+    }
+    
     let backgroundRandomizer = Int.random(in: 1...4)
     override func render(canvas:Canvas) {
         if let canvasSize = canvas.canvasSize, !didRender {
