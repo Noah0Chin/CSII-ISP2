@@ -11,24 +11,22 @@ class TrackshotTarget: RenderableEntity, EntityMouseEnterHandler, EntityMouseLea
     var didRender = false
     var Score = 0
     var frameCounter = 0
+    // Renders the score
     func renderLabel(canvas:Canvas, patternId:Int) {
         let text = Text(location:Point(x:150, y:100), text:"\(Score)")
         text.font = "80pt Roboto"
         canvas.render(FillStyle(color:Color(.mediumpurple)))
         canvas.render(text)
     }
-
+    // Picks the inital velocity of the ball
     var velocityX = Int.random(in: -6 ... 6)
     var velocityY = Int.random(in: -6 ... 6)
-                
-    var dimensionX = 0
-    var dimensionY = 0
-
+      
     init(center:Point, radiusX: Int, radiusY: Int) {
         ellipse = Ellipse(center:center,radiusX: radiusX, radiusY: radiusY, fillMode:.fillAndStroke)
         super.init(name:"Target")
     }
-    
+    // creates bounding rect for the ball towards the sides of the wall
     override func boundingRect() -> Rect {
         let left = ellipse.center.x - ellipse.radiusX
         let top = ellipse.center.y - ellipse.radiusY
@@ -36,7 +34,7 @@ class TrackshotTarget: RenderableEntity, EntityMouseEnterHandler, EntityMouseLea
         let height = ellipse.radiusY 
         return Rect(topLeft: Point(x: left, y: top), size: Size(width: width, height: height))
     }
-    
+    // calculates velocity for the ball
     override func calculate(canvasSize: Size) {
         // First, move to the new position
         ellipse.center += Point(x:velocityX, y:velocityY)
@@ -59,34 +57,35 @@ class TrackshotTarget: RenderableEntity, EntityMouseEnterHandler, EntityMouseLea
         }
         
     }
-    
+    // setups the mouse enter and leave handler
     override func setup(canvasSize:Size, canvas:Canvas) {
         dispatcher.registerEntityMouseEnterHandler(handler:self)
         dispatcher.registerEntityMouseLeaveHandler(handler:self)      
     }
-
+    // desetups the mouse enter and leave handler
     override func teardown() {
         dispatcher.unregisterEntityMouseEnterHandler(handler:self)      
         dispatcher.unregisterEntityMouseLeaveHandler(handler:self)      
     }
-    
+    // adds score and changes color when the mouse is actually on the ball
     func onEntityMouseEnter(globalLocation:Point) {
         fillStyle = FillStyle(color:Color(.purple))
         Score += 1
     }
-    
+    // resets the ball to its original color
     func onEntityMouseLeave(globalLocation:Point) {
         fillStyle = FillStyle(color:Color(.magenta))
     } 
-    
+    // renders the ball
     override func render(canvas: Canvas) {              
         if  !didRender {
+            // randomizes the velocity every 120 frames or roughly 4 seconds
             if frameCounter == 120 {
                 velocityX = Int.random(in: -16 ... 16)
                 velocityY = Int.random(in: -16 ... 16)
                 frameCounter = 0
             }
-                             
+            // renders ball then the score 
             canvas.render(strokeStyle, fillStyle, lineWidth, ellipse)
             renderLabel(canvas:canvas, patternId:Score)
             frameCounter += 1
