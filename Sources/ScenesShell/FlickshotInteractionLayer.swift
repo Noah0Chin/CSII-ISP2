@@ -8,7 +8,7 @@ class FlickshotInteractionLayer : Layer {
 
     public var timeSet : Int?
 
-    let timer = Timer(enqueueScene:ScoreScene(), timeLimit: 45)
+    let timer = Timer(enqueueScene:ScoreScene(), timeLimit: 5)
     
     public init() {
         super.init(name: "Wipeshot Interaction")

@@ -143,7 +143,7 @@ class Target: RenderableEntity, EntityMouseClickHandler {
     }
 
     override func boundingRect() -> Rect {
-        return Rect(topLeft:Point(x:ellipse.center.x - ellipse.radiusX, y: ellipse.center.y - ellipse.radiusY), size: Size(width: ellipse.radiusX * 2, height: ellipse.radiusY * 2))
+        return Rect(topLeft:Point(x:ellipse.center.x - ellipse.radiusX - 15, y: ellipse.center.y - ellipse.radiusY - 15), size: Size(width: ellipse.radiusX * 3, height: ellipse.radiusY * 3))
     
     }
 

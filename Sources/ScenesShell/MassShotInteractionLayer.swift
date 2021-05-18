@@ -55,7 +55,7 @@ class MassShotInteractionLayer : Layer {
           }
 
           // spawns in targets 2 every seconds
-          if entityCount.count < 80 && (frameCount == 30 || frameCount == 15){
+          if entityCount.count < 120 && (frameCount == 30 || frameCount == 15){
           let centerPoint = Point(x:Int.random(in:300 ... 1700), y:Int.random(in:300 ... 780))
           let radiusX = Int.random(in:20 ... 30)
           let radiusY = radiusX

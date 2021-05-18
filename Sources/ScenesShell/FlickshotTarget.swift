@@ -116,8 +116,8 @@ class FlickshotTarget: RenderableEntity, EntityMouseClickHandler {
     
     override func render(canvas: Canvas) {
         if destroyed == true {
-            let xPosition = Int.random(in: 200 ..< canvasX*2)
-            let yPosition = Int.random(in: 200 ..< canvasY*2)            
+            let xPosition = Int.random(in: 200 ..< canvasX*2 - 200)
+            let yPosition = Int.random(in: 200 ..< canvasY*2 - 200)            
             centerPosition = !centerPosition
             
             if centerPosition == false {                
@@ -142,7 +142,7 @@ class FlickshotTarget: RenderableEntity, EntityMouseClickHandler {
     }
         
     override func boundingRect() -> Rect {
-        return Rect(topLeft:Point(x:ellipse.center.x - ellipse.radiusX, y: ellipse.center.y - ellipse.radiusY), size: Size(width: ellipse.radiusX * 2, height: ellipse.radiusY * 2))
+        return Rect(topLeft:Point(x:ellipse.center.x - ellipse.radiusX - 10 , y: ellipse.center.y - ellipse.radiusY - 10), size: Size(width: ellipse.radiusX * 3, height: ellipse.radiusY * 3))
     
     }      
 }

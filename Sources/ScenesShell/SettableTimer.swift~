@@ -10,10 +10,9 @@ class Timer: RenderableEntity {
     var seconds = 0
     var frameCounter = 0
     var endTimeLimit : Int
-
     var timerClose = false
     
-    init(enqueueScene: Scene, timeLimit: Int) {        
+    init(enqueueScene: Scene, timeLimit: Int) {
         nextEnqueueScene = enqueueScene
         endTimeLimit = timeLimit
         super.init(name:"Timer")
@@ -26,12 +25,7 @@ class Timer: RenderableEntity {
     override func setup(canvasSize:Size, canvas:Canvas) {
         canvasXpoint = canvasSize.center.x
         canvasYpoint = canvasSize.center.y
-
     }    
-
-    public func setTime(seconds:Int) {
-        endTimeLimit = seconds
-    }
     
     func createTimer(canvas: Canvas, seconds: Int, color:Color) {
         let timerText = Text(location:Point(x: canvasXpoint, y: 30), text: "\(seconds)")
@@ -79,7 +73,9 @@ class Timer: RenderableEntity {
         if seconds == endTimeLimit {
             director.enqueueScene(scene:nextEnqueueScene)
             director.transitionToNextScene()
-        }               
+        }
+        
+       
     }
 
     

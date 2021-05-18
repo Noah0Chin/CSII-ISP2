@@ -10,7 +10,7 @@ import Igis
 class ScoreBackground : RenderableEntity {
 
     var didRender = false
-
+    var frameCounter = 0
     let congratsBackground : Image
     let ggBackground : Image
     let memeBackground : Image
@@ -37,10 +37,15 @@ class ScoreBackground : RenderableEntity {
         super.init(name:"ScoreBackground")
     }
 
+    var canvasYpoint = 0
+    var canvasXpoint = 0
+    
     override func setup(canvasSize: Size, canvas:Canvas) {
         canvas.setup(ggBackground)
         canvas.setup(congratsBackground)
         canvas.setup(memeBackground)
+        canvasXpoint = canvasSize.center.x
+        canvasYpoint = canvasSize.center.y
     }
 
 
@@ -53,7 +58,22 @@ class ScoreBackground : RenderableEntity {
             canvas.render(clearRectangle)
         }
 
+    func createLabel(canvas: Canvas, text: String, color:Color) {
+        let timerText = Text(location:Point(x: canvasXpoint, y: canvasYpoint), text: "\(text)")
+        timerText.font = "100pt Impact bold"
+        
+        let box = Rectangle(rect:Rect(topLeft:Point(x: canvasXpoint - 510, y:canvasYpoint - 60), size:Size(width:1040, height:115)), fillMode:.fill)       
+        let boxBorder = Rectangle(rect:Rect(topLeft:Point(x: canvasXpoint - 525, y:canvasYpoint - 45), size:Size(width:1005, height:115)), fillMode:.fill)
+        
+        
+        canvas.render(FillStyle(color:Color(.black)))
+        canvas.render(boxBorder)        
+        canvas.render(FillStyle(color:Color(.gray)))
+        canvas.render(box)
 
+        canvas.render(FillStyle(color:color))
+        canvas.render(timerText)
+    }
 
         switch backgroundRandomizer {
         case 1 ..< 34 :
@@ -74,7 +94,17 @@ class ScoreBackground : RenderableEntity {
              
         default: fatalError("background does not exist")
         }
-
+        if frameCounter == 30 {
+            frameCounter = 0
+            createLabel(canvas:canvas, text:"Congratulations!!!!", color: Color(.white))
+        } else {
+            frameCounter += 1
+            if frameCounter < 15 {
+                createLabel(canvas:canvas, text:"Congratulations!!!!", color: Color(.yellow))
+            } else {
+                createLabel(canvas:canvas, text:"Congratulations!!!!", color: Color(.white))
+            }
+        }
     }
 }
 
