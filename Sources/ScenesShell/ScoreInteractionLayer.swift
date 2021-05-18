@@ -4,7 +4,7 @@ import ScenesControls
 
 class ScoreInteractionLayer : Layer {
 
-   
+    var transitionScene = false
     init() {
         super.init(name:"Score Interaction Layer")
         let backToMainMenuButton = Button(name:"backToMainMenu", labelString: "To Main Menu?",
@@ -26,5 +26,12 @@ class ScoreInteractionLayer : Layer {
     private func onBackToMainMenuButtonClickHandler(control: Control, localLocation: Point) {
         director.enqueueScene(scene:MenuScene())
         background().noMusic()
+        transitionScene = true
+    }
+
+    override func postCalculate(canvas: Canvas) {
+        if transitionScene == true {
+            director.transitionToNextScene()
+            }
     }
 }
