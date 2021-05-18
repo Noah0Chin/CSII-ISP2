@@ -20,7 +20,7 @@ class MenuScene : Scene {
 
     init() {
         // Using a meaningful name can be helpful for debugging
-        super.init(name:"Menu Scene")
+        super.init(name:"Menu")
 
         // We insert our Layers in the constructor
         // We place each layer in front of the previous layer

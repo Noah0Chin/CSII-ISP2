@@ -19,7 +19,6 @@ class MenuBackground : RenderableEntity {
     let minecraftshaders : Image
     
     init() {
-
         guard let havenBackgroundURL = URL(string:"https://wallpaperboat.com/wp-content/uploads/2020/06/04/43354/valorant-15.jpg") else {
             fatalError("Failed to create the URL for havenBackground")
         }
@@ -66,7 +65,7 @@ class MenuBackground : RenderableEntity {
     public func shouldMusicPlay() {
         playMusic = !playMusic
         print("works")
-        didRender = false
+        backgroundAudio.mode = .pause
     }
 
     
@@ -83,48 +82,35 @@ class MenuBackground : RenderableEntity {
 
         switch (backgroundRandomizer) {
         case 1:
-            if breezeBackground.isReady && backgroundAudio.isReady  && playMusic == true  {
-                breezeBackground.renderMode = .destinationRect(Rect(topLeft:Point(x:0,y:0), size:canvas.canvasSize!))
-                backgroundAudio.mode = .play
+            if breezeBackground.isReady && backgroundAudio.isReady {
+                breezeBackground.renderMode = .destinationRect(Rect(topLeft:Point(x:0,y:0), size:canvas.canvasSize!))             
                 canvas.render(breezeBackground)
                 canvas.render(backgroundAudio)
-                print("\(playMusic)")
-            } else {
-                backgroundAudio.mode = .pause
             }
             
         case 2:
-            if havenBackground.isReady && backgroundAudio.isReady && playMusic == true {
+            if havenBackground.isReady && backgroundAudio.isReady {
                 havenBackground.renderMode = .destinationRect(Rect(topLeft:Point(x:0,y:0), size:canvas.canvasSize!))
-                backgroundAudio.mode = .play
                 canvas.render(havenBackground)
                 canvas.render(backgroundAudio)
-                                print("\(playMusic)")
-            } else {
-                backgroundAudio.mode = .pause
             }
+            
         case 3:
-            if icebox.isReady && backgroundAudio.isReady  && playMusic == true  {
+            if icebox.isReady && backgroundAudio.isReady {
                 icebox.renderMode = .destinationRect(Rect(topLeft:Point(x:0,y:0), size:canvas.canvasSize!))
-                backgroundAudio.mode = .play
                 canvas.render(icebox)
-                canvas.render(backgroundAudio)
-                print("\(playMusic)")
-            } else {
-                backgroundAudio.mode = .pause
-            }
-            
-            
+                canvas.render(backgroundAudio)             
+            } 
+                                               
         case 4:
-            if minecraftshaders.isReady && backgroundAudio.isReady && playMusic == true  {
+            if minecraftshaders.isReady && backgroundAudio.isReady {
                 minecraftshaders.renderMode = .destinationRect(Rect(topLeft:Point(x:0,y:0), size:canvas.canvasSize!))
-                backgroundAudio.mode = .play
                 canvas.render(minecraftshaders)
                 canvas.render(backgroundAudio)
-                                print("\(playMusic)")
-            } else {
-                backgroundAudio.mode = .pause
+
             }
+             
+           
             
             
         default: fatalError("background does not exist")

@@ -76,9 +76,17 @@ class MenuInteractionLayer : Layer {
     
     createButton(name:"TestGame")
      */
-    
+    func background() -> MenuBackground {
+        guard let menuScene = scene as? MenuScene else {
+            fatalError("menuScene of type MenuScene is required")            
+        }
+        let backgroundLayer = menuScene.backgroundLayer
+        let background = backgroundLayer.menuBackground
+        return background
+    }
    
     private func onStartRandomButtonClickHandler(control: Control, localLocation: Point) {
+                background().shouldMusicPlay()
         director.enqueueScene(scene:gamesArray.randomElement()!)
         director.transitionToNextScene()
         //createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:150, y:100), layoutStyle:.uniformColumn)
@@ -92,37 +100,42 @@ class MenuInteractionLayer : Layer {
     }
 
     private func onStartFlickshotButtonClickHandler(control: Control, localLocation: Point) {
+                background().shouldMusicPlay()
         director.enqueueScene(scene:FlickshotScene())
         director.transitionToNextScene()
-        MenuBackground().shouldMusicPlay()
+
     }
 
     private func onStartTrackshotButtonClickHandler(control: Control, localLocation: Point) {
-        MenuBackground().shouldMusicPlay()
-  //      director.enqueueScene(scene:TrackshotScene())
-//        director.transitionToNextScene()
-        MenuBackground().shouldMusicPlay()
+        background().shouldMusicPlay()
+       // director.enqueueScene(scene:TrackshotScene())
+       // director.transitionToNextScene()
+       
+       
     }
 
     private func onStartMassShotButtonClickHandler(control: Control, localLocation: Point) {
+        background().shouldMusicPlay()
         director.enqueueScene(scene:MassShotScene())
         director.transitionToNextScene()
-        MenuBackground().shouldMusicPlay()
+        background().shouldMusicPlay()
     }
 
 
 
-    private func onStartGridshot10ButtonClickHandler(control: Control, localLocation: Point) {        
+    private func onStartGridshot10ButtonClickHandler(control: Control, localLocation: Point) {
+                background().shouldMusicPlay()
         director.enqueueScene(scene:GridshotScene())
         director.transitionToNextScene()
         SettableTimer().setTime(endTime:10)
-        MenuBackground().shouldMusicPlay()
+        background().shouldMusicPlay()
     }
-    private func onStartGridshot30ButtonClickHandler(control: Control, localLocation: Point) {        
+    private func onStartGridshot30ButtonClickHandler(control: Control, localLocation: Point) {
+        background().shouldMusicPlay()
         director.enqueueScene(scene:GridshotScene())
         director.transitionToNextScene()
         SettableTimer().setTime(endTime:30)
-        MenuBackground().shouldMusicPlay()
+        background().shouldMusicPlay()
     }
     
     
