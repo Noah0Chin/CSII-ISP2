@@ -45,5 +45,5 @@ class GridshotInteractionLayer : Layer {
             background().noMusic()
         }
         
-    }
+    } 
 }

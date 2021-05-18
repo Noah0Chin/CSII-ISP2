@@ -48,8 +48,17 @@ class MassShotBackground : RenderableEntity {
         canvas.setup(massShotBackgroundAudio)
     }
 
+    public func noMusic() {
+        massShotBackgroundAudio.mode = .pause        
+    }
 
-    let backgroundRandomizer = Int.random(in: 1...2)
+    public func yesMusic() {
+        massShotBackgroundAudio.mode = .play
+    }
+    
+    let backgroundRandomizer = Int.random(in: 1...4)
+
+
     override func render(canvas:Canvas) {
         if let canvasSize = canvas.canvasSize, !didRender {
             // Clear the entire canvas

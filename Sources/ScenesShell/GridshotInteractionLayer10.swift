@@ -28,5 +28,20 @@ class GridshotInteractionLayer10 : Layer {
         insert(entity: timer, at:.front)
         print(SettableTimer().endTimeLimit)
     }
-
+    
+    func background() -> Background {
+        guard let mainScene = scene as? GridshotScene10 else {
+            fatalError("mainScene of type GridshotScene is required")
+        }
+        let backgroundLayer = mainScene.backgroundLayer
+        let background = backgroundLayer.background
+        return background
+    }
+    
+    override func postCalculate(canvas: Canvas) {
+        if timer.seconds == timer.endTimeLimit - 1 {
+            background().noMusic()
+        }
+        
+    }
 }

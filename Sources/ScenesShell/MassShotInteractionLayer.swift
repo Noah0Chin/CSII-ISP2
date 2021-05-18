@@ -45,6 +45,15 @@ class MassShotInteractionLayer : Layer {
           insert(entity:endGameTimer, at: .front)
       }
 
+    func background() -> MassShotBackground {
+        guard let mainScene = scene as? MassShotScene else {
+            fatalError("mainScene of type GridshotScene is required")
+        }
+        let backgroundLayer = mainScene.massShotBackgroundLayer
+        let background = backgroundLayer.background
+        return background
+    }
+    
       override func postCalculate(canvas: Canvas) {
           
           // keep tracks of frames for time
@@ -66,6 +75,10 @@ class MassShotInteractionLayer : Layer {
           entityCount.append(entityVal)
           entityVal += 1
           target.changeVelocity(velocityX: velocityX, velocityY: velocityY)         
-          }          
+          }
+          if endGameTimer.seconds == endGameTimer.endTimeLimit - 1 {
+            background().noMusic()
+        }
+    
       }
   }

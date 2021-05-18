@@ -16,4 +16,20 @@ class FlickshotInteractionLayer : Layer {
         insert(entity: target, at:.front)
         insert(entity: timer, at:.front)
     }
+        
+    func background() -> Background {
+        guard let mainScene = scene as? FlickshotScene else {
+            fatalError("mainScene of type GridshotScene is required")
+        }
+        let backgroundLayer = mainScene.backgroundLayer
+        let background = backgroundLayer.background
+        return background
+    }
+    
+    override func postCalculate(canvas: Canvas) {
+        if timer.seconds == timer.endTimeLimit - 1 {
+            background().noMusic()
+        }
+        
+    } 
 }

@@ -44,7 +44,14 @@ class MassShotInteractionLayer10 : Layer {
           // We insert our RenderableEntities in the constructor
           insert(entity:endGameTimer, at: .front)
       }
-
+    func background() -> MassShotBackground {
+        guard let mainScene = scene as? MassShotScene10 else {
+            fatalError("mainScene of type GridshotScene is required")
+        }
+        let backgroundLayer = mainScene.massShotBackgroundLayer
+        let background = backgroundLayer.background
+        return background
+    }
       override func postCalculate(canvas: Canvas) {
           
           // keep tracks of frames for time
@@ -66,6 +73,9 @@ class MassShotInteractionLayer10 : Layer {
           entityCount.append(entityVal)
           entityVal += 1
           target.changeVelocity(velocityX: velocityX, velocityY: velocityY)         
-          }          
+          }
+           if endGameTimer.seconds == endGameTimer.endTimeLimit - 1 {
+            background().noMusic()
+        }
       }
   }
