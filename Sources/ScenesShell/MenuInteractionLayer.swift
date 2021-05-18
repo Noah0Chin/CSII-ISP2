@@ -5,6 +5,7 @@ import ScenesControls
 
 class MenuInteractionLayer : Layer {
     let gamesArray = [GridshotScene(), FlickshotScene(), TrackshotScene(), MassShotScene()]
+    let games10Array = [GridshotScene10(), FlickshotScene10(), TrackshotScene10(), MassShotScene10()]    
 
     var canvasX = 0
     var canvasY = 0
@@ -24,13 +25,19 @@ class MenuInteractionLayer : Layer {
         
 
         
-        let startRandomButton = Button(name:"startRandom", labelString: "Random",
-                                         topLeft: Point(x: 50, y: 25))
+        let startRandomButton = Button(name:"startRandom", labelString: "Random 45s",
+                                         topLeft: Point(x: 50, y: 55))
         startRandomButton.clickHandler = onStartRandomButtonClickHandler
         insert(entity: startRandomButton, at: .front)        
 
+        let startRandom10Button = Button(name:"startRandom10", labelString: "Random 10s",
+                                         topLeft: Point(x: 50, y: 25))
+        startRandom10Button.clickHandler = onStartRandom10ButtonClickHandler
+        insert(entity: startRandom10Button, at: .front)        
+
+        
         let startGamesButton = Button(name:"gamesRandom", labelString: "Games",
-                                         topLeft: Point(x: 50, y: 100))
+                                         topLeft: Point(x: 50, y: 120))
         startGamesButton.clickHandler = onStartGamesButtonClickHandler
         insert(entity: startGamesButton, at: .front)        
         
@@ -236,6 +243,14 @@ class MenuInteractionLayer : Layer {
         director.transitionToNextScene()
         //createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:150, y:100), layoutStyle:.uniformColumn)        
     }
+    private func onStartRandom10ButtonClickHandler(control: Control, localLocation: Point) {
+        background().shouldMusicPlay()
+        director.enqueueScene(scene:games10Array.randomElement()!)
+        director.transitionToNextScene()
+        //createPanel(name:"Vertical", labelString:"Vertical Panel", topLeft:Point(x:150, y:100), layoutStyle:.uniformColumn)        
+    }
+
+    
     let xPos = 50
     let yPos = 200
     private func onStartGamesButtonClickHandler(control: Control, localLocation: Point) {
